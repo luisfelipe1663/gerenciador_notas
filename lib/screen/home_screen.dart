@@ -31,12 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> carregarNota() async {
     final String texto = await _storage.buscarNota();
     if (!mounted) return; // verifica se a tela ainda esta disponivel
-    final String titulo = await _storage.buscarTitulo();
+    // final String titulo = await _storage.buscarTitulo();
 
     setState(() {
       _notaSalva = texto; //atualiza o texto marcado na tela
       _controller.text = texto; // preenche o campo com o valor salvo
-      _tituloController.text = titulo;
+      // _tituloController.text = titulo;
     });
   }
 
@@ -45,13 +45,13 @@ Future<void> salvarNota() async{
 
   //variavel para armazenar a nota digitada pelo usuario
   final String texto = _controller.text.trim();
-  final String titulo = _tituloController.text.trim();
+  // final String titulo = _tituloController.text.trim();
 
 //verificamos se a nota esta vazia
   if(texto.isEmpty) return; // caso esteja vazia não salvara a nota
 
   await _storage.salvarNota(texto); //Grava no dispositivo
-  await _storage.salvarTitulo(titulo);
+  // await _storage.salvarTitulo(titulo);
   if(!mounted) return;//Evita atualizar uma tela descartada
 
   setState(() {
